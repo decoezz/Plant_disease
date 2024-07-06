@@ -38,8 +38,10 @@ def predict_plant_disease(image_bytes):
     # Get the predicted class
     probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
     predicted_class = torch.argmax(probabilities, dim=-1)
+    confidence = probabilities[0][predicted_class].item() * 100  # Convert to percentage
     
-    return predicted_class.item(), probabilities[0][predicted_class].item()
+    return predicted_class.item(), confidence
+
 
 # Disease information
 def disease_information(predicted_class):
