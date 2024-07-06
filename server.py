@@ -9,7 +9,7 @@ from io import BytesIO
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load the model
-model_path = r'/home/gunicornuser/project/Plant_disease/Model'
+model_path = r'/root/Plant_disease/Model'
 model = ViTForImageClassification.from_pretrained(model_path)
 model.to(device)
 model.eval()
@@ -38,11 +38,8 @@ def predict_plant_disease(image_bytes):
     # Get the predicted class
     probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
     predicted_class = torch.argmax(probabilities, dim=-1)
-    confidence = probabilities[0][predicted_class].item() * 100  # Convert to percentage
-     # Format confidence as a percentage string
-    confidence_str = f"{confidence:.2f}%"  # Round to 2 decimal places
-    return predicted_class.item(), confidence_str
-
+    
+    return predicted_class.item(), probabilities[0][predicted_class].item()
 
 # Disease information
 def disease_information(predicted_class):
