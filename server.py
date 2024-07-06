@@ -39,8 +39,9 @@ def predict_plant_disease(image_bytes):
     probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
     predicted_class = torch.argmax(probabilities, dim=-1)
     confidence = probabilities[0][predicted_class].item() * 100  # Convert to percentage
-    
-    return predicted_class.item(), confidence
+     # Format confidence as a percentage string
+    confidence_str = f"{confidence:.2f}%"  # Round to 2 decimal places
+    return predicted_class.item(), confidence_str
 
 
 # Disease information
