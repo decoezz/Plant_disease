@@ -9,7 +9,7 @@ from io import BytesIO
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load the model
-model_path = r'C:\Users\decoe\Desktop\Comptition\Model'
+model_path = r'/home/gunicornuser/project/Plant_disease/Model'
 model = ViTForImageClassification.from_pretrained(model_path)
 model.to(device)
 model.eval()
