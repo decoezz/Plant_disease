@@ -4,6 +4,7 @@ from torchvision import transforms
 from PIL import Image
 from transformers import ViTForImageClassification, ViTFeatureExtractor
 from io import BytesIO
+import json
 
 # Define the device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -23,6 +24,10 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(mean=feature_extractor.image_mean, std=feature_extractor.image_std)
 ])
+
+# Load disease information from JSON file
+with open('diseases.json', 'r') as f:
+    disease_data = json.load(f)
 
 # Function to predict plant disease from image bytes
 def predict_plant_disease(image_bytes):
@@ -46,22 +51,6 @@ def predict_plant_disease(image_bytes):
 
     return predicted_class, probabilities[0][predicted_class].item()
 
-# Disease information
-def disease_information(predicted_class):
-    diseases = {
-        0: {
-            'name': 'Alternaria Leaf Spot',
-            'description': 'Alternaria leaf spot is characterized by small, dark, circular spots with concentric rings (target-like spots) on leaves, which can cause leaf yellowing and drop. In severe cases, the spots can coalesce, leading to large dead areas on the leaf.',
-            'conditions': 'Warm and humid conditions favor the growth and spread of Alternaria fungi. Poor air circulation can exacerbate the problem, as it keeps the foliage wet for extended periods. High moisture levels, including heavy dew, rainfall, or overhead irrigation, can promote fungal growth.',
-            'mechanical_treatment': 'Remove and destroy infected plant debris to reduce sources of inoculum. Ensure good air circulation around plants by proper spacing and pruning. Water plants at the base to avoid wetting foliage and reduce leaf wetness duration.',
-            'chemical_treatment': 'Chlorothalonil:Usage: Apply every 7-10 days during conditions favorable for disease development.Application: Follow label instructions for specific crops and timing.Effectiveness: Controls a broad spectrum of fungal pathogens, including Alternaria.Copper-Based Fungicides (e.g., Copper Hydroxide, Copper Oxychloride):Usage: Apply at the first sign of disease and repeat applications every 7-10 days as necessary.Application: Use according to the manufacturer\'s instructions.Effectiveness: Provides protection against many fungal and bacterial diseases.Mancozeb:Usage: Apply as a preventative treatment or at the first sign of symptoms.Application: Follow label directions for dosage and application frequency.Effectiveness: Effective against a variety of fungal pathogens, including Alternaria.Azoxystrobin:Usage: Apply as a foliar spray, typically every 7-14 days depending on disease pressure.Application: Use according to the label instructions for specific crops.Effectiveness: A systemic fungicide that provides both protective and curative action against Alternaria.Difenoconazole:Usage: Apply as a foliar spray at the first sign of disease.Application: Follow the label for specific crops and timing.Effectiveness: Effective in controlling Alternaria and other fungal pathogens.',
-            'source': 'https://en.wikipedia.org/wiki/Alternaria_leaf_spot'
-        },
-        # Add other diseases here with their respective indices
-    }
-    
-    return diseases.get(predicted_class, {'error': 'Disease information not available'})
-
 # Initialize Flask app
 app = Flask(__name__)
 
@@ -74,7 +63,7 @@ def predict():
     image_file = request.files['image']
     image_bytes = image_file.read()
     predicted_class, confidence = predict_plant_disease(image_bytes)
-    disease_info = disease_information(predicted_class)
+    disease_info = disease_data.get(str(predicted_class), {'error': 'Disease information not available'})
     
     response = {
         'disease': disease_info,
