@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify
+import cv2
+import numpy as np
 import torch
 from torchvision import transforms
 from PIL import Image
@@ -52,8 +54,9 @@ def predict_disease(image_path):
     ]
     predictions = model.predict(image)
     predicted_class = np.argmax(predictions, axis=1)
+    confidence = np.max(predictions)
     
-    return class_names[predicted_class[0]]
+    return class_names[predicted_class[0]], confidence
 
 
 # Disease information
@@ -203,7 +206,7 @@ def predict():
     
     image_file = request.files['image']
     image_bytes = image_file.read()
-    predicted_class, confidence = predict_plant_disease(image_bytes)
+    predicted_class, confidence = predict_disease(image_bytes)
     disease_info = disease_information(predicted_class)
     
     response = {
