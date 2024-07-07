@@ -1,6 +1,4 @@
 from flask import Flask, request, jsonify
-import cv2
-import numpy as np
 import torch
 from torchvision import transforms
 from PIL import Image
@@ -27,37 +25,24 @@ transform = transforms.Compose([
 ])
 
 # Function to predict plant disease from image bytes
-def predict_disease(image_path):
-    image = cv2.imread(image_path)
-    image = cv2.resize(image, (224, 224))
-    image = np.array(image) / 255.0
-    image = np.expand_dims(image, axis=0)
-    class_names = [
-        "Alternaria Leaf Spot",
-        "Anthracnose",
-        "Black Spot leaf disease",
-        "Botrytis Blight",
-        "Chlorosis",
-        "Curl Leaf",
-        "Die black",
-        "Downy Mildew",
-        "Healthy",
-        "Leaf Blight",
-        "Leaf Necrosis",
-        "Leaf Spot",
-        "Mosaic Virus",
-        "Powdery Mildew",
-        "Rust",
-        "Septoria Leaf Spot",
-        "Sooty mold",
-        "Sooty mould"
-    ]
-    predictions = model.predict(image)
-    predicted_class = np.argmax(predictions, axis=1)
-    confidence = np.max(predictions)
-    
-    return class_names[predicted_class[0]], confidence
+def predict_plant_disease(image_bytes):
+    image = Image.open(BytesIO(image_bytes)).convert('RGB')
+    # Preprocess the image
+    image = transform(image).unsqueeze(0)  # Add batch dimension
+    image = image.to(device)
 
+    # Perform inference
+    with torch.no_grad():
+        outputs = model(image)
+    
+    # Get the predicted class
+    probabilities = torch.nn.functional.softmax(outputs.logits, dim=-1)
+    predicted_class = torch.argmax(probabilities, dim=-1)
+
+    print(f'Predicted Class Index: {predicted_class.item()}')
+    print(f'Probabilities: {probabilities}')
+    
+    return predicted_class.item(), probabilities[0][predicted_class].item()
 
 # Disease information
 def disease_information(predicted_class):
@@ -197,7 +182,7 @@ def disease_information(predicted_class):
 
 # Initialize Flask app
 app = Flask(__name__)
- 
+
 # Define the prediction endpoint
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -206,7 +191,7 @@ def predict():
     
     image_file = request.files['image']
     image_bytes = image_file.read()
-    predicted_class, confidence = predict_disease(image_bytes)
+    predicted_class, confidence = predict_plant_disease(image_bytes)
     disease_info = disease_information(predicted_class)
     
     response = {
