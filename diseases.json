@@ -8,12 +8,12 @@
     "source": "https://en.wikipedia.org/wiki/Alternaria_leaf_spot"
   },
   "1": {
-    "name": "Another Disease Example",
-    "description": "Description for another disease.",
-    "conditions": "Conditions for another disease.",
-    "mechanical_treatment": "Mechanical treatment for another disease.",
-    "chemical_treatment": "Chemical treatment for another disease.",
-    "source": "https://en.wikipedia.org/wiki/Another_disease_example"
+    "name": "Anthracnose",
+    "description": "Anthracnose is a fungal disease that tends to attack plants in the spring when the weather is cool and wet, primarily on leaves and twigs. The fungi overwinter in dead twigs and fallen leaves. Cool, rainy weather creates perfect conditions for the spores to spread. Dry and hot weather stop the progression of the disease that may begin again once the weather conditions become optimal. The problem can be cyclic but is rarely fatal. Anthracnose fungus infects many deciduous and evergreen trees and shrubs, as well as fruits, vegetables, and grass. Anthracnose is noticeable along the leaves and the veins as small lesions. These dark, sunken lesions may also be found on stems, flowers, and fruits. In order to distinguish between anthracnose and other leaf spot diseases, you should carefully examine the undersides of leaves for a number of small tan to brown dots, about the size of a pinhead.",
+    "conditions": "Anthracnose symptoms vary by plant host and due to weather conditions. On landscape trees, the fungi infect developing shoots and expanding leaves. Small beige, brown, black, or black spots later appear on infected twigs of hosts such as elm, oak, and sycamore.",
+    "mechanical_treatment": "Anthracnose control begins with practicing good sanitation. Picking up and disposing of all diseased plant parts, including twigs and leaves, from the ground or from around the plant, is important. This keeps the fungus from overwintering near the plant. Proper pruning techniques to rid trees and plants of old and dead wood also helps with the prevention of anthracnose fungus. Keeping plants healthy by providing proper light, water, and fertilizer will strengthen the plant's ability to ward off a fungus attack. Stressed trees and plants have a difficult time recovering from anthracnose fungus. Chemical treatment is rarely used except when the disease involves newly transplanted plants or continual defoliation.",
+    "chemical_treatment": "Chlorothalonil, Mancozeb, Copper-based fungicides.Chlorothalonil: Effective against a broad spectrum of fungal diseases, including Anthracnose. Commonly used on vegetables, fruits, and ornamentals. Apply according to label instructions, typically every 7-14 days during the growing season. Mancozeb: A broad-spectrum fungicide that is effective against Anthracnose. Often used on fruits, vegetables, and ornamental plants. Typically applied every 7-10 days, particularly during wet conditions when the disease is more prevalent. Copper-based fungicides: Effective in controlling Anthracnose on a variety of plants, including vegetables, fruits, and ornamental trees. Examples include Copper Hydroxide and Copper Oxychloride. Apply at the first sign of disease and repeat applications every 7-10 days as necessary.",
+    "source": "https://www.maine.gov/dacf/php/gotpests/diseases/anthracnose.htm#:~:text=Anthracnose%20is%20a%20group%20of,attacks%20only%20specific%20tree%20species."
   },
   "2": {
     "name": "Black Spot leaf disease",
