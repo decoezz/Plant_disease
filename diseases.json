@@ -48,12 +48,12 @@
     "source": "https://en.wikipedia.org/wiki/Leaf_curl"
   },
   "6": {
-    "name": "Die Black",
-    "description": "Dieback is a condition where the branches and leaves of a plant die from the tips inward, leading to the death of the affected parts. This condition can affect a wide range of plants, including trees, shrubs, and perennials.",
-    "conditions": "Fungal infections, bacterial diseases, pest infestations, environmental stress, and physical damage are common causes of dieback.",
-    "mechanical_treatment": "Remove and destroy infected or dead plant parts to prevent the spread of pathogens. Prune back affected branches to healthy tissue, making clean cuts to minimize damage. Ensure plants receive adequate and consistent water, improve soil drainage, and provide balanced fertilization.",
-    "chemical_treatment": "Use fungicides like chlorothalonil, copper-based fungicides, or mancozeb as a preventative measure or at the first sign of infection. Copper-based bactericides can help control bacterial pathogens. Use appropriate insecticides to manage pest infestations.",
-    "source": "https://www.livelyroot.com/blogs/plant-care/what-causes-black-leaves"
+    "name": "Ash DieBack",
+    "description": "Ash Dieback, also known as Chalara or Chalara Dieback of Ash, is a serious disease affecting ash trees (Fraxinus species). It is caused by the fungal pathogen Hymenoscyphus fraxineus (formerly Chalara fraxinea). The disease leads to leaf loss, crown dieback, and bark lesions, and can ultimately kill affected trees. Young trees are particularly vulnerable, and mature trees can succumb after repeated infections.",
+    "conditions": "Ash Dieback spreads through spores that are released from infected leaves and leaf litter. These spores are carried by the wind and can travel over long distances, infecting new trees. The main conditions that favor the infection include:Moist, Cool Conditions: The fungus thrives in cool, damp environments.Leaf Litter: The presence of infected leaf litter on the ground provides a reservoir for the fungus.Open Wounds: The fungus can enter trees through wounds or natural openings in the bark.",
+    "mechanical_treatment": "Mechanical treatment options for Ash Dieback are limited, but they can help manage the spread and impact of the disease:Removal of Infected Trees: Removing and destroying severely infected trees can help reduce the spread of the fungus.Sanitation: Collecting and destroying fallen leaves and debris around infected trees can reduce the spore load in the environment.Pruning: Pruning out infected branches can slow the progression of the disease, although it is not a cure.",
+    "chemical_treatment": "Currently, there are no effective chemical treatments available for Ash Dieback. Fungicides have not been proven to control the disease effectively, especially given the difficulty in reaching the interior parts of large trees. Research is ongoing to find potential chemical controls, but none are currently recommended for widespread use",
+    "source": "https://www.rhs.org.uk/disease/ash-dieback"
   },
   "7": {
     "name": "Downy Mildew",
